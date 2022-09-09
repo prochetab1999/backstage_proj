@@ -1,9 +1,9 @@
 app:
-  title: Scaffolded Backstage App
+  title: ONE
   baseUrl: http://localhost:3000
 
 organization:
-  name: My Company
+  name: Thoughtworks
 
 backend:
   # Used for enabling authentication, secret is shared by all backend plugins
