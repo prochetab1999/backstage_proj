@@ -70,6 +70,7 @@ import {
 
 import { TechDocsAddons } from '@backstage/plugin-techdocs-react';
 import { ReportIssue } from '@backstage/plugin-techdocs-module-addons-contrib';
+import { ApiDocsExtendedMyVersionPage } from '@internal/plugin-api-docs-extended-my-version';
 
 const techdocsContent = (
   <EntityTechdocsContent>
@@ -150,7 +151,9 @@ const serviceEntityPage = (
     <EntityLayout.Route path="/" title="Overview">
       {overviewContent}
     </EntityLayout.Route>
-
+    {/* <EntityLayout.Route path="/api-extended" title="API-Docs-Extended">
+      <ApiDocsExtendedMyVersionPage/>
+</EntityLayout.Route> */}
     <EntityLayout.Route path="/ci-cd" title="CI/CD">
       {cicdContent}
     </EntityLayout.Route>

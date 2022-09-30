@@ -39,6 +39,7 @@ import { ThemeProvider } from '@material-ui/core/styles';
 import { TwTheme } from '../src/themes/TwTheme';
 import { HomePage } from "../src/components/home/HomePage";
 import { HomepageCompositionRoot } from '@backstage/plugin-home';
+import { ApiDocsExtendedMyVersionPage } from '@internal/plugin-api-docs-extended-my-version';
 
 const app = createApp({
   apis,
@@ -78,6 +79,9 @@ const routes = (
     <Route path="/" element={<HomepageCompositionRoot />}>
      <HomePage />
    </Route>
+   <Route path="/api-extended" element={<ApiDocsExtendedMyVersionPage />}>
+     {/* <ApiDocsExtendedMyVersionPage /> */}
+   </Route>
     <Route path="/catalog" element={<CatalogIndexPage />} />
     <Route
       path="/catalog/:namespace/:kind/:name"
@@ -110,6 +114,7 @@ const routes = (
     </Route>
     <Route path="/settings" element={<UserSettingsPage />} />
     <Route path="/catalog-graph" element={<CatalogGraphPage />} />
+    <Route path="/api-docs-extended-my-version" element={<ApiDocsExtendedMyVersionPage />}/>
   </FlatRoutes>
 );
 

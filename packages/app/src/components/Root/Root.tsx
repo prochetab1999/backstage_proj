@@ -38,6 +38,7 @@ import {
   SidebarPage,
   SidebarScrollWrapper,
   SidebarSpace,
+  UserIcon,
   useSidebarOpenState,
 } from '@backstage/core-components';
 import MenuIcon from '@material-ui/icons/Menu';
@@ -97,6 +98,7 @@ export const Root = ({ children }: PropsWithChildren<{}>) => (
         <SidebarDivider />
         <SidebarScrollWrapper>
           <SidebarItem icon={MapIcon} to="tech-radar" text="Tech Radar" />
+          <SidebarItem icon={UserIcon} to="/api-extended" text="API-Docs-Extended-My-Version" />
         </SidebarScrollWrapper>
       </SidebarGroup>
       <SidebarSpace />
