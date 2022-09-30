@@ -39,9 +39,6 @@ import {
 import React from 'react';
 import { Chip } from '@material-ui/core';
 // import { registerComponentRouteRef } from '../../routes';
-const ochange = (): string => {
-  return "procheta"
-}
 const categoriesColumn = (labelCategory:string): TableColumn<CatalogTableRow> => {
   return {
     title: 'Categories',
@@ -50,11 +47,12 @@ const categoriesColumn = (labelCategory:string): TableColumn<CatalogTableRow> =>
       padding: '0px 16px 0px 20px',
     },
     render: ({ entity }) => (
+      
       <>
-        {entity.metadata.labels?
+        {entity.metadata.labels && entity.metadata.etag?
           (<Chip
-              key={entity.metadata.labels[labelCategory]}
-              label={entity.metadata.labels[labelCategory]}
+              key={entity.metadata.labels[entity.metadata.etag]}
+              label={entity.metadata.labels[entity.metadata.etag]}
               size="small"
               variant="outlined"
               style={{ marginBottom: '0px' }}
