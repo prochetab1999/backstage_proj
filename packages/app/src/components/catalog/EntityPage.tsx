@@ -71,6 +71,7 @@ import {
 import { TechDocsAddons } from '@backstage/plugin-techdocs-react';
 import { ReportIssue } from '@backstage/plugin-techdocs-module-addons-contrib';
 import { ApiDocsExtendedMyVersionPage } from '@internal/plugin-api-docs-extended-my-version';
+import { CustomizedAboutCard } from './CustomizedAboutCard';
 
 const techdocsContent = (
   <EntityTechdocsContent>
@@ -252,7 +253,7 @@ const apiPage = (
       <Grid container spacing={3}>
         {entityWarningContent}
         <Grid item md={6}>
-          <EntityAboutCard />
+          <CustomizedAboutCard/>
         </Grid>
         <Grid item md={6} xs={12}>
           <EntityCatalogGraphCard variant="gridItem" height={400} />

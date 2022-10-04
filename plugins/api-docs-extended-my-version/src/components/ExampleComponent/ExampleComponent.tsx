@@ -18,6 +18,7 @@ import {
   Content,
   ContentHeader,
   CreateButton,
+  OverflowTooltip,
   PageWithHeader,
   SupportButton,
   TableColumn,
@@ -35,10 +36,50 @@ import {
   UserListFilterKind,
   UserListPicker,
   CatalogFilterLayout,
+  humanizeEntityRef,
+  EntityRefLink,
 } from '@backstage/plugin-catalog-react';
 import React from 'react';
 import { Chip } from '@material-ui/core';
+
+// import { Entity } from "@backstage/cart" 
 // import { registerComponentRouteRef } from '../../routes';
+const nameColumn=(options?: {
+  defaultKind?: string;
+}):TableColumn<CatalogTableRow> =>{
+  // function formatContent(entity: Entity): string {
+  //   return (
+  //     entity.metadata?.title ||
+  //     humanizeEntityRef(entity, {
+  //       defaultKind: options?.defaultKind,
+  //     })
+  //   );
+  // }
+
+  return {
+    title: 'Name of API',
+    field: 'resolved.name',
+    highlight: true,
+    // customSort({ entity: entity1 }, { entity: entity2 }) {
+    //   // TODO: We could implement this more efficiently by comparing field by field.
+    //   // This has similar issues as above.
+    //   return formatContent(entity1).localeCompare(formatContent(entity2));
+    // },
+    render: ({ entity }) => (
+      <EntityRefLink
+        entityRef={entity}
+        defaultKind={options?.defaultKind || 'Component'}
+        title={entity.metadata?.title}
+        // children="hello"
+      />
+      // 
+      // <OverflowTooltip
+      //     text={entity.metadata.name}
+      //     placement="bottom-start"
+      //   />
+    ),
+  };
+}
 const categoriesColumn = (labelCategory:string): TableColumn<CatalogTableRow> => {
   return {
     title: 'Categories',
@@ -82,15 +123,15 @@ const defaultColumns: TableColumn<CatalogTableRow>[] = [
 ];
 
 const customizedColumns: TableColumn<CatalogTableRow>[] = [
+  categoriesColumn('category'),
   CatalogTable.columns.createTitleColumn({ hidden: true }),
-  CatalogTable.columns.createNameColumn({ defaultKind: 'API' }),
+  nameColumn({ defaultKind: 'API' }),
   CatalogTable.columns.createSystemColumn(),
   CatalogTable.columns.createOwnerColumn(),
   CatalogTable.columns.createSpecTypeColumn(),
   CatalogTable.columns.createSpecLifecycleColumn(),
   CatalogTable.columns.createMetadataDescriptionColumn(),
   CatalogTable.columns.createTagsColumn(),
-  categoriesColumn('category'),
 ];
 
 /**
