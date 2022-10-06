@@ -49,7 +49,7 @@ import {
   import EditIcon from '@material-ui/icons/Edit';
   import React, { useCallback } from 'react';
 //   import { viewTechDocRouteRef } from '@backstage/plugin-catalog';
-  import { AboutContent } from '@backstage/plugin-catalog';
+  import { AboutContent , catalogPlugin } from '@backstage/plugin-catalog';
 import { CustomizedAboutContent } from './CustomizedAboutContent';
   
   const useStyles = makeStyles({
@@ -91,8 +91,7 @@ import { CustomizedAboutContent } from './CustomizedAboutContent';
     const scmIntegrationsApi = useApi(scmIntegrationsApiRef);
     const catalogApi = useApi(catalogApiRef);
     const alertApi = useApi(alertApiRef);
-    // const viewTechdocLink = useRouteRef(catalogPlugi);
-  
+    const viewTechdocLink = useRouteRef(catalogPlugin.externalRoutes.viewTechDoc as ExternalRouteRef<AnyParams, true>);
     const entitySourceLocation = getEntitySourceLocation(
       entity,
       scmIntegrationsApi,
@@ -106,20 +105,20 @@ import { CustomizedAboutContent } from './CustomizedAboutContent';
       icon: <ScmIntegrationIcon type={entitySourceLocation?.integrationType} />,
       href: entitySourceLocation?.locationTargetUrl,
     };
-    // const viewInTechDocs: IconLinkVerticalProps = {
-    //   label: 'View TechDocs',
-    //   disabled:
-    //     !entity.metadata.annotations?.['backstage.io/techdocs-ref'] ||
-    //     !viewTechdocLink,
-    //   icon: <DocsIcon />,
-    //   href:
-    //     viewTechdocLink &&
-    //     viewTechdocLink({
-    //       namespace: entity.metadata.namespace || DEFAULT_NAMESPACE,
-    //       kind: entity.kind,
-    //       name: entity.metadata.name,
-    //     }),
-    // };
+    const viewInTechDocs: IconLinkVerticalProps = {
+      label: 'View TechDocs',
+      disabled:
+        !entity.metadata.annotations?.['backstage.io/techdocs-ref'] ||
+        !viewTechdocLink,
+      icon: <DocsIcon />,
+      href:
+        viewTechdocLink &&
+        viewTechdocLink({
+          namespace: entity.metadata.namespace || DEFAULT_NAMESPACE,
+          kind: entity.kind,
+          name: entity.metadata.name,
+        }),
+    };
   
     let cardClass = '';
     if (variant === 'gridItem') {
@@ -171,7 +170,7 @@ import { CustomizedAboutContent } from './CustomizedAboutContent';
             </>
           }
           subheader={<HeaderIconLinkRow links={[viewInSource, 
-            // viewInTechDocs
+            viewInTechDocs
         ]} />}
         />
         <Divider />
