@@ -40,6 +40,7 @@ import { TwTheme } from '../src/themes/TwTheme';
 import { HomePage } from "../src/components/home/HomePage";
 import { HomepageCompositionRoot } from '@backstage/plugin-home';
 import { ApiDocsExtendedMyVersionPage } from '@internal/plugin-api-docs-extended-my-version';
+import { CatalogPluginMyVersionPage } from '@internal/plugin-catalog-plugin-my-version';
 
 const app = createApp({
   apis,
@@ -115,6 +116,8 @@ const routes = (
     <Route path="/settings" element={<UserSettingsPage />} />
     <Route path="/catalog-graph" element={<CatalogGraphPage />} />
     <Route path="/api-docs-extended-my-version" element={<ApiDocsExtendedMyVersionPage />}/>
+    <Route path="/catalog-plugin-my-version" element={<CatalogPluginMyVersionPage/>}/>
+    <Route path="/catalog-plugin-my-version" element={<CatalogPluginMyVersionPage />}/>
   </FlatRoutes>
 );
 
