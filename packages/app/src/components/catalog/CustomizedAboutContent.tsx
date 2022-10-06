@@ -203,7 +203,10 @@ import {
           value="No Categories"
           gridSizes={{ xs: 12, sm: 6, lg: 4 }}
         >
-          {entity?.metadata?.labels && entity?.metadata?.etag && 
+          {(Object.values(entity?.metadata?.labels as Object) || []).map(t => (
+            <Chip key={t} size="small" label={t} />
+          ))}
+          {/* {entity?.metadata?.labels && entity?.metadata?.etag && 
           (<Chip
               key={entity?.metadata?.labels[entity?.metadata?.etag]}
               label={entity?.metadata?.labels[entity?.metadata?.etag]}
@@ -211,7 +214,7 @@ import {
               variant="outlined"
               style={{ marginBottom: '0px' }}
             />)
-          }
+          } */}
         </AboutField>
         {isLocation && (entity?.spec?.targets || entity?.spec?.target) && (
           <AboutField label="Targets" gridSizes={{ xs: 12 }}>
